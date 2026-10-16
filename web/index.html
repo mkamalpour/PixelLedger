@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#202620" />
+    <title>PixelLedger | Game shop simulator</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script id="pixelledger-runtime" type="application/json">
+      __PIXELLEDGER_RUNTIME_CONFIG__
+    </script>
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to workspace</a>
+    <aside class="rail">
+      <a class="brand" href="#overview"
+        ><span class="brandmark" aria-hidden="true">P</span
+        ><span>PixelLedger<small>GAME SHOP SIMULATOR</small></span></a
+      >
+      <div class="rail-label">YOUR WORKSPACE</div>
+      <nav id="nav" aria-label="Main navigation"></nav>
+      <div class="rail-bottom">
+        <span class="live-dot"></span> Local simulation<small
+          >Real decisions. Virtual dollars.</small
+        ><button class="rail-settings" data-view="settings">
+          Shop settings <span aria-hidden="true">&#8599;</span>
+        </button>
+      </div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar">
+        <span class="crumb"
+          >WORKSPACE <span>/</span> <b id="crumb">Overview</b></span
+        >
+        <div class="top-status">
+          <span id="connection" class="connection">Connecting</span
+          ><span class="day-pill" id="day">DAY --</span>
+        </div>
+      </header>
+      <main id="main" tabindex="-1">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow" id="eyebrow">THE BIG PICTURE</p>
+            <h1 id="title">Your shop, in play.</h1>
+            <p class="subtitle" id="subtitle">
+              Keep the shelves stocked and the next move yours.
+            </p>
+          </div>
+          <div class="head-actions">
+            <button id="new-order" class="button">+ Create order</button
+            ><button id="advance" class="button primary">
+              Advance a day <span aria-hidden="true">&#8594;</span>
+            </button>
+          </div>
+        </div>
+        <div id="error-banner" role="alert" hidden></div>
+        <section id="content" aria-label="Shop workspace">
+          <div class="loading">Opening the shop ledger...</div>
+        </section>
+        <footer>
+          <span>PIXELLEDGER / AN INTERACTIVE SHOP ECONOMY</span
+          ><span>Simulation only. No real payments.</span>
+        </footer>
+      </main>
+    </div>
+    <dialog id="dialog" aria-labelledby="dialog-title">
+      <div class="dialog-head">
+        <h2 id="dialog-title"></h2>
+        <button class="icon-button" id="close-dialog" aria-label="Close dialog">
+          &#215;
+        </button>
+      </div>
+      <div id="dialog-content"></div>
+    </dialog>
+    <div id="toast" role="status" aria-live="polite" hidden></div>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+"""Start PixelLedger; imports never reset or seed an external database."""
+
+import argparse
+import os
+from shop.database import ROOT
+import uvicorn
+
+
+def main():
+    parser = argparse.ArgumentParser(description="PixelLedger game shop simulator")
+    parser.add_argument("--host", default=os.getenv("PIXELLEDGER_HOST", "127.0.0.1"))
+    parser.add_argument(
+        "--port", type=int, default=int(os.getenv("PIXELLEDGER_PORT", "8000"))
+    )
+    parser.add_argument("--reload", action="store_true", help="Development reload")
+    args = parser.parse_args()
+    if args.host not in {"127.0.0.1", "localhost", "::1"} and not os.getenv(
+        "PIXELLEDGER_API_KEY"
+    ):
+        parser.error("Set PIXELLEDGER_API_KEY before listening beyond loopback")
+    os.environ["PIXELLEDGER_HOST"] = args.host
+    print(f"PixelLedger: http://{args.host}:{args.port}")
+    uvicorn.run("shop.api:app", host=args.host, port=args.port, reload=args.reload)
+
+
+if __name__ == "__main__":
+    main()
