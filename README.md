@@ -91,3 +91,5 @@ main.py      Local launcher
 ```
 
 Current lightweight check (Windows, existing Conda base / Python 3.13.5): **32 passed**. No dependency installs, model downloads, live publishing, or heavy datasets were used.
+
+No license file is included.
