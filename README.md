@@ -20,13 +20,13 @@ Python **3.11** is recommended and verified. SQLite is included with Python; no 
 ```powershell
 git clone https://github.com/mkamalpour/PixelLedger.git
 cd PixelLedger
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+conda activate base  # Or activate another existing compatible environment.
+# Optional dependency setup; requires explicit permission and connectivity.
 python -m pip install -r requirements.txt
 python main.py
 ```
 
-On macOS/Linux, activate with `source .venv/bin/activate`.
+On macOS/Linux, activate an existing compatible environment before using the same Python commands.
 
 Open **http://127.0.0.1:8000**. The first run creates an isolated shop database with 26 products, 16 fictional customers, suppliers, staff and eight starter orders. Subsequent launches keep your decisions.
 
@@ -89,3 +89,5 @@ sql/         Reporting examples and PostgreSQL reference schema
 tests/       Isolated business-rule and API regressions
 main.py      Local launcher
 ```
+
+Current lightweight check (Windows, existing Conda base / Python 3.13.5): **32 passed**. No dependency installs, model downloads, live publishing, or heavy datasets were used.
