@@ -1,8 +1,12 @@
 # PixelLedger
 
-A playable game shop management simulator with a real transactional database. Run the sales desk, set prices, receive inventory, manage customers and returns, then advance the world to see how your decisions change demand and cash flow.
+Run a fictional game shop: buy stock, set prices, take orders, and handle returns. Advance the simulation to see how those decisions affect demand and cash. The shop uses SQLite; all customers and payments are simulated.
 
 **All customers, orders and payments are simulated. No real payment processor or external database is contacted.**
+
+## Try it first
+
+Review the starting cash and stock, then place a small order through the sales desk. Advance one day and inspect the changes in orders and inventory. Use the SQL examples to explore the same records without changing them.
 
 ## What you can do
 
@@ -15,13 +19,13 @@ A playable game shop management simulator with a real transactional database. Ru
 
 ## Run
 
-Python **3.11** is recommended and verified. SQLite is included with Python; no PostgreSQL server, Node build, or external API key is needed.
+Use an existing compatible environment. The current offline tests pass in Conda `base` with Python **3.13.5**. SQLite is included with Python; no PostgreSQL server, Node build, or external API key is needed.
 
 ```powershell
 git clone https://github.com/mkamalpour/PixelLedger.git
 cd PixelLedger
-conda activate base  # Or activate another existing compatible environment.
-# Optional dependency setup; requires explicit permission and connectivity.
+conda activate base  # Or use your existing compatible environment.
+# Install dependencies if they are not already available in your environment.
 python -m pip install -r requirements.txt
 python main.py
 ```
@@ -90,6 +94,6 @@ tests/       Isolated business-rule and API regressions
 main.py      Local launcher
 ```
 
-Current lightweight check (Windows, existing Conda base / Python 3.13.5): **32 passed**. No dependency installs, model downloads, live publishing, or heavy datasets were used.
+Checked on Windows with Python 3.13.5 (Conda base): **32 tests passed**.
 
 No license file is included.
