@@ -1,7 +1,7 @@
 """A deterministic shop world with atomic stock, payment and refund accounting."""
 
 from datetime import date, timedelta
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 import hashlib
 import json
 import random
@@ -206,13 +206,20 @@ class Shop:
             raise RuleError("Customer not found")
         if not items or len(items) > 20:
             raise RuleError("Choose between one and twenty products")
-        discount_bps = int(Decimal(str(discount)) * 100)
-        if not 0 <= discount_bps <= 2500:
+        try:
+            percentage = Decimal(str(discount))
+        except (InvalidOperation, ValueError):
+            raise RuleError("Discount must be a finite number between 0 and 25 percent") from None
+        if not percentage.is_finite() or not 0 <= percentage <= 25:
             raise RuleError("Discount must be between 0 and 25 percent")
+        scaled = percentage * 100
+        if scaled != scaled.to_integral_value():
+            raise RuleError("Discount supports at most two decimal places")
+        discount_bps = int(scaled)
         quantities = {}
         for item in items:
             quantity = item["quantity"]
-            if not isinstance(quantity, int) or not 1 <= quantity <= 100:
+            if type(quantity) is not int or not 1 <= quantity <= 100:
                 raise RuleError("Each quantity must be between 1 and 100")
             quantities[item["product_id"]] = (
                 quantities.get(item["product_id"], 0) + quantity
@@ -528,7 +535,7 @@ class Shop:
         return self.state()
 
     def restock(self, product_id, quantity):
-        if not isinstance(quantity, int) or not 1 <= quantity <= 1000:
+        if type(quantity) is not int or not 1 <= quantity <= 1000:
             raise RuleError("Receive between one and 1,000 units")
         with self.db.transaction() as connection:
             product = connection.execute(

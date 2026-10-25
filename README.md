@@ -94,6 +94,8 @@ tests/       Isolated business-rule and API regressions
 main.py      Local launcher
 ```
 
-Checked on Windows with Python 3.13.5 (Conda base): **32 tests passed**.
+Checked on Windows with Python 3.13.5 (Conda base): **40 tests passed**.
 
 No license file is included.
+
+Engine calls reject nonfinite or overprecise discounts and boolean stock quantities before any transaction can persist. API identifiers require integers.

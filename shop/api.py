@@ -88,12 +88,12 @@ class Input(BaseModel):
 
 
 class OrderItem(Input):
-    product_id: int = Field(gt=0)
+    product_id: int = Field(gt=0, strict=True)
     quantity: int = Field(ge=1, le=100, strict=True)
 
 
 class OrderRequest(Input):
-    customer_id: int = Field(gt=0)
+    customer_id: int = Field(gt=0, strict=True)
     items: list[OrderItem] = Field(min_length=1, max_length=20)
     discount_percent: Decimal = Field(
         default=Decimal("0"), ge=0, le=25, max_digits=4, decimal_places=2
@@ -110,7 +110,7 @@ class StatusRequest(Input):
 
 
 class ReturnRequest(Input):
-    line_id: int = Field(gt=0)
+    line_id: int = Field(gt=0, strict=True)
     quantity: int = Field(ge=1, le=100, strict=True)
     restock: bool = True
     reason: str = Field(default="Changed mind", min_length=1, max_length=300)
