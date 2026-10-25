@@ -1,5 +1,7 @@
 # PixelLedger
 
+**[Explore the interactive project presentation](docs/overview.html)** — open locally in your browser; works offline.
+
 Run a fictional game shop: buy stock, set prices, take orders, and handle returns. Advance the simulation to see how those decisions affect demand and cash. The shop uses SQLite; all customers and payments are simulated.
 
 **All customers, orders and payments are simulated. No real payment processor or external database is contacted.**
