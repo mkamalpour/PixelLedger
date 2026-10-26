@@ -122,3 +122,9 @@ Engine calls reject nonfinite or overprecise discounts and boolean stock quantit
 
 See the [engineering audit](docs/ENGINEERING_AUDIT.md) for the dated test baseline,
 project assessment, environment assignment and remaining work.
+
+## Additional workflow improvements
+
+Aggregate financial report with an explicit profit bridge, currency/unit metadata and bounded daily history; customer identities stay out of the export.
+
+Use Download financial report on Overview, or GET /api/report.

@@ -194,6 +194,13 @@ def state():
     return shop.state()
 
 
+@app.get('/api/report')
+def financial_report():
+    return JSONResponse(shop.financial_report(), headers={
+        'Cache-Control': 'no-store',
+        'Content-Disposition': 'attachment; filename="pixelledger-financial-report.json"'})
+
+
 @app.post("/api/orders")
 def create_order(req: OrderRequest):
     return shop.create_order(

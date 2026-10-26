@@ -826,6 +826,20 @@ class Shop:
         ).fetchone()
         self._history(connection, 0, row[0] if row else 0)
 
+    def financial_report(self):
+        """Read-only, aggregate export; customer identities never enter the report."""
+        state = self.state()
+        metrics = state['metrics']
+        return dict(format_version=1, simulation=True, currency='USD', money_unit='integer cents',
+                    day=state['day'], date=state['date'], cash_cents=state['cash_cents'],
+                    metrics=metrics, daily_history=state['history'], history_limit_days=30,
+                    profit_bridge=[dict(component='Net sales excluding tax', amount_cents=metrics['net_sales_cents']),
+                                   dict(component='Cost of goods sold', amount_cents=-metrics['cogs_cents']),
+                                   dict(component='Operating costs', amount_cents=-metrics['operating_cost_cents'])],
+                    notes=['All transactions are simulated.',
+                           'Cash differs from profit because stock purchases, tax, receipts and refunds affect cash timing.',
+                           'History includes at most the most recent 30 recorded days.'])
+
     def state(self):
         connection = self.db.connect()
         try:

@@ -317,6 +317,19 @@ function metric(label, value, note, kind = "") {
   return n;
 }
 function overview(c) {
+  c.append(button('Download financial report', async () => {
+    try {
+      const report = await request('/report');
+      const url = URL.createObjectURL(new Blob([JSON.stringify(report, null, 2)], {type: 'application/json'}));
+      const link = el('a');
+      link.href = url;
+      link.download = 'pixelledger-day-' + report.day + '.json';
+      document.body.append(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch (error) { toast(error.message); }
+  }));
   const m = state.metrics,
     metrics = el("div", "metrics");
   metrics.append(
