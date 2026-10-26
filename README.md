@@ -13,16 +13,18 @@ Review the starting cash and stock, then place a small order through the sales d
 <details>
 <summary>Using the existing managed Windows workspace</summary>
 
-Assigned environment: **base** — Python **3.13.5**, using the existing Conda environment `base`. Open `Workspaces/PixelLedger.code-workspace` from the workspace folder to select its interpreter.
-
-From this repository folder in PowerShell:
+Assigned environment: **base**. From this repository folder in PowerShell:
 
 ```powershell
-& '..\Launchers\PixelLedger.cmd' --check --deep
-& '..\Launchers\PixelLedger.cmd'
+.\run.cmd --check
+.\run.cmd
 ```
 
-The launcher activates the assigned environment and checks dependencies. It does not install packages or download models. These launchers belong to the managed parent workspace; for a standalone clone, follow the setup instructions below in your own compatible environment. Keep optional model/provider prerequisites separate from the offline examples.
+The repo-local launcher selects `G:\AnaConda\install`
+and imports required startup modules. It installs nothing and downloads
+no models. On a standalone clone where that interpreter is absent, it uses your
+active `python`; activate a compatible environment first. `--check` reports the
+actual interpreter; it does not validate optional models or every workflow.
 
 </details>
 
@@ -117,3 +119,6 @@ Checked on Windows with Python 3.13.5 (Conda base): **44 tests passed**.
 No license file is included.
 
 Engine calls reject nonfinite or overprecise discounts and boolean stock quantities before any transaction can persist. API identifiers require integers.
+
+See the [engineering audit](docs/ENGINEERING_AUDIT.md) for the dated test baseline,
+project assessment, environment assignment and remaining work.
