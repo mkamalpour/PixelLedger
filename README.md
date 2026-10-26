@@ -112,7 +112,7 @@ tests/       Isolated business-rule and API regressions
 main.py      Local launcher
 ```
 
-Checked on Windows with Python 3.13.5 (Conda base): **40 tests passed**.
+Checked on Windows with Python 3.13.5 (Conda base): **44 tests passed**.
 
 No license file is included.
 

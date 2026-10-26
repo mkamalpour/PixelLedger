@@ -421,6 +421,8 @@ class Shop:
         self._ledger(connection, "refund", -amount, f"{reason}: order #{order_id}")
 
     def _return(self, connection, order_id, line_id, quantity, restock, reason):
+        if type(quantity) is not int or not 1 <= quantity <= 100:
+            raise RuleError("Return quantity must be a whole number between 1 and 100")
         order = self._order(connection, order_id)
         if order["status"] != "Delivered":
             raise RuleError("Only delivered orders can be returned")
