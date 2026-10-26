@@ -10,6 +10,22 @@ Run a fictional game shop: buy stock, set prices, take orders, and handle return
 
 Review the starting cash and stock, then place a small order through the sales desk. Advance one day and inspect the changes in orders and inventory. Use the SQL examples to explore the same records without changing them.
 
+<details>
+<summary>Using the existing managed Windows workspace</summary>
+
+Assigned environment: **base** — Python **3.13.5**, using the existing Conda environment `base`. Open `Workspaces/PixelLedger.code-workspace` from the workspace folder to select its interpreter.
+
+From this repository folder in PowerShell:
+
+```powershell
+& '..\Launchers\PixelLedger.cmd' --check --deep
+& '..\Launchers\PixelLedger.cmd'
+```
+
+The launcher activates the assigned environment and checks dependencies. It does not install packages or download models. These launchers belong to the managed parent workspace; for a standalone clone, follow the setup instructions below in your own compatible environment. Keep optional model/provider prerequisites separate from the offline examples.
+
+</details>
+
 ## What you can do
 
 - **Run the shop:** Overview with cash, net sales, estimated operating profit, inventory value, demand history and market events.

@@ -451,7 +451,7 @@ function overview(c) {
     .slice(0, 4);
   stock.append(
     table(
-      ["PRODUCT", "STOCK", "PRICE", ""],
+      ["PRODUCT", "STOCK", "PRICE", "ACTIONS"],
       products.map((p) => [
         productCell(p),
         stockCell(p),
@@ -715,7 +715,7 @@ function orders(c) {
       );
     result.append(
       table(
-        ["ORDER", "CUSTOMER", "STATUS", "PAYMENT", "TOTAL", ""],
+        ["ORDER", "CUSTOMER", "STATUS", "PAYMENT", "TOTAL", "ACTIONS"],
         rows.map((o) => [
           "#" + String(o.id).padStart(4, "0"),
           o.customer_name,
